@@ -1961,7 +1961,6 @@ var layer = 0;
       var AxisX = i * 100;
       var AxisY = 20;
       var Text = this.get_data();
-      Text = Object.values(Text);
       console.log(Text);
       var cardGroup = new Konva.Group({
         draggable: true,
@@ -2003,18 +2002,24 @@ var layer = 0;
       this.add_to_layer(cardGroup);
     },
     make_card: function make_card(object) {},
-    get_data: function get_data(success, error) {
+    get_data: function get_data() {
       var obj;
-      return $.ajax({
+      var id;
+      var json;
+      $.ajax({
         type: 'GET',
         url: '/getdata',
-        contentType: "application/json;charset=utf-8",
+        async: 'false',
         dataType: "json",
-        success: function success(data) {// console.log(data);
+        success: function success(data) {
+          //   console.log(data);
+          obj = data;
         },
         error: function error(data) {// console.log(data);
         }
       });
+      console.log(obj);
+      return obj;
     },
     add_to_layer: function add_to_layer(object) {
       // Layer
@@ -49795,6 +49800,7 @@ var render = function () {
       _c(
         "button",
         {
+          attrs: { id: "get_data" },
           on: {
             click: function ($event) {
               return _vm.get_data()
@@ -62128,14 +62134,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*****************************************!*\
   !*** ./resources/js/components/App.vue ***!
   \*****************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _App_vue_vue_type_template_id_332fccf4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.vue?vue&type=template&id=332fccf4& */ "./resources/js/components/App.vue?vue&type=template&id=332fccf4&");
 /* harmony import */ var _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue?vue&type=script&lang=js& */ "./resources/js/components/App.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _App_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -62165,7 +62172,7 @@ component.options.__file = "resources/js/components/App.vue"
 /*!******************************************************************!*\
   !*** ./resources/js/components/App.vue?vue&type=script&lang=js& ***!
   \******************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

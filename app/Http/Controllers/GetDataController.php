@@ -14,9 +14,13 @@ class GetDataController extends Controller
      */
     public function index()
     {
-        $groups = Group::all(['id','json']);
+        $groups = Group::all(['id','json'])->toArray();
 
-        return response()->json(array('groups'=> $groups), 200);;
+
+        // var_dump($groups);
+        // exit;
+
+        return response()->json($groups);
 
     }
 

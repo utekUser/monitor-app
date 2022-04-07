@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="create()" id="add-btn">Add shape</button>
-    <button @click="get_data()">Get Data</button>
+    <button @click="get_data()" id="get_data">Get Data</button>
     <v-stage ref="stage" :config="stageSize">
       <!-- <v-layer>
                 <v-group :config="{draggable: true, x: 30, y: 70}">
@@ -55,7 +55,6 @@ export default {
       var AxisX = i * 100;
       var AxisY = 20;
       var Text = this.get_data();
-      Text = Object.values(Text);
 
       console.log(Text);
       var cardGroup = new Konva.Group({
@@ -102,20 +101,25 @@ export default {
 
     },
 
-    get_data: function (success, error) {
+    get_data: function () {
         var obj;
-        return $.ajax({
+        var id;
+        var json;
+        $.ajax({
             type: 'GET',
             url: '/getdata',
-            contentType: "application/json;charset=utf-8",
+            async: 'false',
             dataType: "json",
             success: function (data) {
-                // console.log(data);
+            //   console.log(data);
+              obj = data;
             },
             error: function(data) {
                 // console.log(data);
             }
         });
+        console.log(obj);
+        return obj;
     },
 
     add_to_layer: function (object) {
